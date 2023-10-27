@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:15:25 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/26 01:29:50 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/10/27 02:56:02 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_free(t_data *data)
 {
-	unsigned int	i;
+	int	i;
 
 	i = -1;
 	if (data->philos)

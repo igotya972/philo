@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:09:58 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/27 02:12:24 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/10/27 02:54:52 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	ft_init_data(int ac, char **av, t_data *data)
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
 	data->start_time = ft_times();
-	printf("start time = %lu\n", data->start_time);
 	data->end = 0;
 	if (ac == 6)
 		data->nb_must_eat = ft_atoi(av[5]);
@@ -47,7 +46,7 @@ void	ft_init_data(int ac, char **av, t_data *data)
 
 void	ft_init_philo(t_data *data)
 {
-	unsigned int	i;
+	int	i;
 
 	data->philos = malloc(sizeof(t_philo) * (data->nb_philo));
 	if (!data->philos)

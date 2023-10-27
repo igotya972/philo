@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:13:14 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/25 14:42:59 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/10/27 03:22:49 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int main (int ac, char **av)
 	ft_init_data(ac, av, data);
 	ft_init_philo(data);
 	ft_start_philo(data);
+	printf("Coucou\n");
+	ft_supervise(data);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:12:52 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/27 02:14:43 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/10/27 02:58:21 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ typedef struct	s_philo	t_philo;
 typedef struct	s_data
 {
 	unsigned long	start_time;
-	unsigned int	nb_philo;
+	int				nb_philo;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
-	unsigned int	nb_must_eat;
+	int				nb_must_eat;
 	t_philo			*philos;
 	pthread_mutex_t	mutex;
 	int			end;
@@ -48,9 +48,9 @@ typedef struct	s_data
 struct	s_philo
 {
 	t_data				*data;
-	unsigned int		count_p_eat;
+	int					count_p_eat;
 	unsigned long		last_eat;
-	unsigned int		id;
+	int					id;
 	pthread_mutex_t		r_fork;
 	pthread_mutex_t		l_fork;
 	pthread_t			thread;
@@ -75,9 +75,9 @@ void			ft_usleep(unsigned long time);
 /*	start_philo.c	*/
 void	ft_start_philo(t_data *data);
 void	ft_supervise(t_data *data);
-int		ft_check_death(t_data *data, unsigned int i);
+int		ft_check_death(t_data *data, int i);
 void	ft_monitoring(t_philo *philo, char *str);
-int		ft_satiate(t_data *data, unsigned int i);
+int		ft_satiate(t_data *data, int i);
 void	ft_eat(t_philo *philo);
 void	*ft_routine(void *p);
 
