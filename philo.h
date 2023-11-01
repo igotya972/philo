@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:12:52 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/27 02:58:21 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/10/30 17:49:41 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ struct	s_philo
 	int					count_p_eat;
 	unsigned long		last_eat;
 	int					id;
-	pthread_mutex_t		r_fork;
+	pthread_mutex_t		fork;
 	pthread_mutex_t		l_fork;
 	pthread_t			thread;
 };

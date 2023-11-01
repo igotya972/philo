@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:09:58 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/27 02:54:52 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/10/31 19:44:54 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ void	ft_init_data(int ac, char **av, t_data *data)
 	data->time_to_die = ft_atoi(av[2]);
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
-	data->start_time = ft_times();
+	//data->start_time = ft_times();
 	data->end = 0;
 	if (ac == 6)
 		data->nb_must_eat = ft_atoi(av[5]);
+	else
+		data->nb_must_eat = 50000;
 	if(pthread_mutex_init(&data->mutex, NULL) != 0)
 		ft_error(data, "mutex init fail");
 }
@@ -57,8 +59,9 @@ void	ft_init_philo(t_data *data)
 		data->philos[i].id = i + 1;
 		data->philos[i].count_p_eat = 0;
 		data->philos[i].data = data;
-		if(pthread_mutex_init(&data->philos[i].r_fork, NULL) != 0)
+		if(pthread_mutex_init(&data->philos[i].fork, NULL) != 0)
 			ft_error(data, "mutex init fail");
-		data->philos->last_eat = 0;
+		data->philos[i].last_eat = ft_times();
+		//printf("%lu\n", data->philos[i].last_eat);
 	}
 }

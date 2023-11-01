@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:13:14 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/27 03:22:49 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/10/30 04:21:15 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,17 @@ void	ft_check_args(int ac, char **av, t_data *data)
 int main (int ac, char **av)
 {
 	t_data	*data;
-	
+
 	data = malloc(sizeof(t_data));
 	ft_check_args(ac, av, data);
 	ft_init_data(ac, av, data);
 	ft_init_philo(data);
+	/* if (ac == 6)
+	{
+		ft_satiate(data, );
+	} */
 	ft_start_philo(data);
-	printf("Coucou\n");
-	ft_supervise(data);
+	//printf("Coucou\n");
+	//ft_supervise(data);
 	return (0);
 }
-
-// init data et init philo et init mutex

@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:15:25 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/27 02:56:02 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/10/30 05:36:28 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_free(t_data *data)
 	{
 		while(++i < data->nb_philo)
 		{
-			pthread_mutex_destroy(&data->philos[i].r_fork);	
+			pthread_mutex_destroy(&data->philos[i].fork);
 			//pthread_mutex_destroy();
 		}
 		free(data->philos);

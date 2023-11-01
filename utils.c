@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:44:52 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/27 02:00:15 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/10/31 19:25:26 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 unsigned long	ft_times(void)
 {
-	struct timeval    tv;
+	struct timeval	tv;
 
-	gettimeofday(&tv, NULL);
+	if (gettimeofday(&tv, NULL) == -1)
+		write(2 , "gettimeofday() error\n" , 22);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
@@ -25,6 +26,6 @@ void	ft_usleep(unsigned long time)
 	unsigned long	actual_time;
 
 	actual_time = ft_times();
-	while (ft_times() - actual_time <= time)
-		usleep(500);
+	while ((ft_times() - actual_time) < time)
+		usleep(time / 10);
 }
