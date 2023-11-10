@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:09:58 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/31 19:44:54 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/11/09 17:31:45 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 unsigned int	ft_atoi(const char *str)
 {
-	int	i;
+	int				i;
 	unsigned int	result;
 
 	i = 0;
@@ -29,21 +29,26 @@ unsigned int	ft_atoi(const char *str)
 	return (result);
 }
 
-void	ft_init_data(int ac, char **av, t_data *data)
+int	ft_init_data(char **av, t_data *data)
 {
 	data->nb_must_eat = 0;
 	data->nb_philo = ft_atoi(av[1]);
 	data->time_to_die = ft_atoi(av[2]);
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
-	//data->start_time = ft_times();
 	data->end = 0;
-	if (ac == 6)
+	data->nb_must_eat = -1;
+	if (av[5])
+	{
 		data->nb_must_eat = ft_atoi(av[5]);
-	else
-		data->nb_must_eat = 50000;
-	if(pthread_mutex_init(&data->mutex, NULL) != 0)
-		ft_error(data, "mutex init fail");
+		if (data->nb_must_eat <= 0)
+			return (1);
+	}
+	if (pthread_mutex_init(&data->mutex, NULL) != 0)
+		ft_error(data, "mutex init");
+	if (pthread_mutex_init(&data->mutex_print, NULL) != 0)
+		ft_error(data, "mutex_print init");
+	return (0);
 }
 
 void	ft_init_philo(t_data *data)
@@ -52,16 +57,15 @@ void	ft_init_philo(t_data *data)
 
 	data->philos = malloc(sizeof(t_philo) * (data->nb_philo));
 	if (!data->philos)
-		ft_error(data, "init philo");
+		ft_error(data, "malloc philo");
 	i = -1;
 	while (++i < data->nb_philo)
 	{
 		data->philos[i].id = i + 1;
 		data->philos[i].count_p_eat = 0;
 		data->philos[i].data = data;
-		if(pthread_mutex_init(&data->philos[i].fork, NULL) != 0)
-			ft_error(data, "mutex init fail");
+		if (pthread_mutex_init(&data->philos[i].fork, NULL) != 0)
+			ft_error(data, "mutex_fork init");
 		data->philos[i].last_eat = ft_times();
-		//printf("%lu\n", data->philos[i].last_eat);
 	}
 }

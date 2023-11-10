@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:44:52 by dferjul           #+#    #+#             */
-/*   Updated: 2023/10/31 19:25:26 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/11/05 05:08:01 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ unsigned long	ft_times(void)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL) == -1)
-		write(2 , "gettimeofday() error\n" , 22);
+		write(2, "gettimeofday() error\n", 22);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 

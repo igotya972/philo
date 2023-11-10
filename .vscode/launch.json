@@ -3,11 +3,13 @@
   "configurations": [
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "lldb",
+      "type": "cppvsdbg",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/dams/42/Cursus/Philosophers",
-      "program": "/Users/dams/42/Cursus/Philosophers/build/Debug/outDebug"
+      "stopAtEntry": false,
+      "console": "externalTerminal",
+      "cwd": "g:/42/Cursus/philo",
+      "program": "g:/42/Cursus/philo/build/Debug/outDebug"
     }
   ]
 }

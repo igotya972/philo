@@ -6,7 +6,7 @@
 #    By: dferjul <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 19:12:28 by dferjul           #+#    #+#              #
-#    Updated: 2023/10/27 02:30:23 by dferjul          ###   ########.fr        #
+#    Updated: 2023/11/10 01:20:20 by dferjul          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJS	=	$(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
 CC	=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -pthread
+CFLAGS	=	-Wall -Wextra -Werror
 
 RM	=	rm -rf
 
@@ -35,13 +35,13 @@ NAME	=	philo
 #--Règle pour compiler les fichiers .c en fichiers .o--#
  $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(CFLAGS) -c $< -o $@
 
 #---------------------rules---------------------#
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) 
+$(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean :
