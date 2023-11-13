@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:13:14 by dferjul           #+#    #+#             */
-/*   Updated: 2023/11/10 05:34:55 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/11/13 03:29:32 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_supervise(t_data *data)
 	while (1)
 	{
 		i = -1;
-		usleep(25);
 		pthread_mutex_lock(&data->mutex);
 		while (++i < data->nb_philo)
 		{
@@ -73,8 +72,6 @@ void	*ft_routine(void *p)
 		}
 		pthread_mutex_unlock(&philo->data->mutex);
 		ft_eat(philo);
-		if (philo->data->end == 1)
-			return (NULL);
 		ft_monitoring(philo, "is sleeping");
 		ft_usleep(philo->data->time_to_sleep);
 		ft_monitoring(philo, "is thinking");

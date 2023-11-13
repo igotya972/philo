@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:09:41 by dferjul           #+#    #+#             */
-/*   Updated: 2023/11/10 05:33:53 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/11/13 03:29:48 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	ft_start_philo(t_data *data)
 	int	i;
 
 	i = -1;
-	data->start_time = malloc(sizeof (unsigned long));
-	data->start_time[0] = ft_times();
 	while (++i < data->nb_philo)
 	{
 		if (pthread_create(&data->philos[i].thread, NULL
@@ -57,10 +55,10 @@ void	ft_monitoring(t_philo *philo, char *str)
 		pthread_mutex_unlock(&philo->data->mutex);
 		return ;
 	}
-	pthread_mutex_unlock(&philo->data->mutex);
 	pthread_mutex_lock(&philo->data->mutex_print);
 	printf("%lu %d %s\n", time, philo->id, str);
 	pthread_mutex_unlock(&philo->data->mutex_print);
+	pthread_mutex_unlock(&philo->data->mutex);
 }
 
 int	ft_satiate(t_data *data, int i)
@@ -86,8 +84,6 @@ int	ft_satiate(t_data *data, int i)
 
 void	ft_eat(t_philo *philo)
 {
-	if (philo->data->end == 1)
-		return ;
 	pthread_mutex_lock(&philo->fork);
 	ft_monitoring(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->data->philos[(philo->id)

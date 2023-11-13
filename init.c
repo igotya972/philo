@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:09:58 by dferjul           #+#    #+#             */
-/*   Updated: 2023/11/09 17:31:45 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/11/12 07:20:46 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	ft_init_data(char **av, t_data *data)
 		if (data->nb_must_eat <= 0)
 			return (1);
 	}
+	data->start_time = malloc(sizeof (unsigned long));
+	if (!data->start_time)
+		ft_error(data, "malloc start_time");
+	data->start_time[0] = ft_times();
 	if (pthread_mutex_init(&data->mutex, NULL) != 0)
 		ft_error(data, "mutex init");
 	if (pthread_mutex_init(&data->mutex_print, NULL) != 0)
