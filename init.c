@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:09:58 by dferjul           #+#    #+#             */
-/*   Updated: 2023/11/12 07:20:46 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/11/23 21:01:31 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int	ft_init_data(char **av, t_data *data)
 	{
 		data->nb_must_eat = ft_atoi(av[5]);
 		if (data->nb_must_eat <= 0)
-			return (1);
+		{
+			free(data);
+			exit(EXIT_SUCCESS);
+		}
 	}
 	data->start_time = malloc(sizeof (unsigned long));
 	if (!data->start_time)

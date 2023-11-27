@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:09:41 by dferjul           #+#    #+#             */
-/*   Updated: 2023/11/13 03:29:48 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/11/24 06:23:14 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,28 @@ void	ft_start_philo(t_data *data)
 			ft_error(data, "pthread_join");
 }
 
-int	ft_check_death(t_data *data, int i)
+void	*ft_routine(void *p)
 {
-	if (ft_times() - data->philos[i].last_eat >= data->time_to_die)
+	t_philo	*philo;
+
+	philo = (t_philo *) p;
+	if ((philo->id % 2) == 0)
+		ft_usleep(philo->data->time_to_eat / 2);
+	while (42)
 	{
-		data->end = 1;
-		printf("%lu %d %s\n",
-			ft_times() - data->start_time[0], data->philos[i].id, "died");
-		return (1);
+		pthread_mutex_lock(&philo->data->mutex);
+		if (philo->data->end == 1)
+		{
+			pthread_mutex_unlock(&philo->data->mutex);
+			return (NULL);
+		}
+		pthread_mutex_unlock(&philo->data->mutex);
+		ft_eat(philo);
+		ft_monitoring(philo, "is sleeping");
+		ft_usleep(philo->data->time_to_sleep);
+		ft_monitoring(philo, "is thinking");
 	}
-	return (0);
+	return (NULL);
 }
 
 void	ft_monitoring(t_philo *philo, char *str)
@@ -59,43 +71,4 @@ void	ft_monitoring(t_philo *philo, char *str)
 	printf("%lu %d %s\n", time, philo->id, str);
 	pthread_mutex_unlock(&philo->data->mutex_print);
 	pthread_mutex_unlock(&philo->data->mutex);
-}
-
-int	ft_satiate(t_data *data, int i)
-{
-	static int	count_eat;
-
-	if (data->nb_must_eat >= 0)
-	{
-		if (data->nb_must_eat <= data->philos[i].count_p_eat)
-		{
-			count_eat++;
-		}
-		if (count_eat >= data->nb_philo)
-		{
-			data->end = 1;
-			return (1);
-		}
-		if (data->nb_philo == i + 1)
-			count_eat = 0;
-	}
-	return (0);
-}
-
-void	ft_eat(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->fork);
-	ft_monitoring(philo, "has taken a fork");
-	pthread_mutex_lock(&philo->data->philos[(philo->id)
-		% philo->data->nb_philo].fork);
-	ft_monitoring(philo, "has taken a fork");
-	ft_monitoring(philo, "is eating");
-	pthread_mutex_lock(&(philo->data->mutex));
-	philo->last_eat = ft_times();
-	philo->count_p_eat++;
-	pthread_mutex_unlock(&(philo->data->mutex));
-	ft_usleep(philo->data->time_to_eat);
-	pthread_mutex_unlock(&philo->fork);
-	pthread_mutex_unlock(&philo->data->philos[(philo->id)
-		% philo->data->nb_philo].fork);
 }

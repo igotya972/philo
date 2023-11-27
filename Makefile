@@ -6,15 +6,13 @@
 #    By: dferjul <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 19:12:28 by dferjul           #+#    #+#              #
-#    Updated: 2023/11/12 06:21:15 by dferjul          ###   ########.fr        #
+#    Updated: 2023/11/14 10:18:37 by dferjul          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	philo.c \
-			error.c \
-			init.c \
-			utils.c \
-			start_philo.c \
+SRCS_DIR = source
+
+SRCS	=	$(shell find $(SRC_DIR) -name '*.c')
 
 
 OBJ_DIR = obj_o
@@ -26,7 +24,7 @@ OBJS	=	$(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
 CC	=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -I./include
 
 RM	=	rm -rf
 
