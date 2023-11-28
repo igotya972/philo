@@ -40,8 +40,13 @@ int	ft_check_death(t_data *data, int i)
 	if (ft_times() - data->philos[i].last_eat >= data->time_to_die)
 	{
 		data->end = 1;
-		printf("%lu %d %s\n",
-			ft_times() - data->start_time[0], data->philos[i].id, "died");
+		printf("%s", COLOR_PURPLE);
+		printf("%lu ", ft_times() - data->start_time[0]);
+		printf("%s", COLOR_PURPLE);
+		printf("%d ", data->philos[i].id);
+		printf("%s", COLOR_PURPLE);
+		printf("%s\n", "died");
+		printf("%s", NO_COLOR);
 		return (1);
 	}
 	return (0);

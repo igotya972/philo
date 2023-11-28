@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:09:41 by dferjul           #+#    #+#             */
-/*   Updated: 2023/11/24 06:23:14 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/11/28 05:13:29 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_start_philo(t_data *data)
 			ft_error(data, "start philo - pthread");
 	}
 	ft_supervise(data);
-	if (data->end == 1)
+	if (data->nb_philo == 1)
 		return ;
 	i = -1;
 	while (++i < data->nb_philo)
@@ -49,9 +49,9 @@ void	*ft_routine(void *p)
 		}
 		pthread_mutex_unlock(&philo->data->mutex);
 		ft_eat(philo);
-		ft_monitoring(philo, "is sleeping");
+		ft_monitoring(philo, COLOR_GREEN "is sleeping" NO_COLOR);
 		ft_usleep(philo->data->time_to_sleep);
-		ft_monitoring(philo, "is thinking");
+		ft_monitoring(philo, COLOR_LIGHT_CYAN "is thinking" NO_COLOR);
 	}
 	return (NULL);
 }
@@ -68,7 +68,12 @@ void	ft_monitoring(t_philo *philo, char *str)
 		return ;
 	}
 	pthread_mutex_lock(&philo->data->mutex_print);
-	printf("%lu %d %s\n", time, philo->id, str);
+	printf("%s", COLOR_ORANGE);
+	printf("%lu ", time);
+	printf("%s", COLOR_LIGHT_CYAN);
+	printf("%d ", philo->id);
+	printf("%s", NO_COLOR);
+	printf("%s\n", str);
 	pthread_mutex_unlock(&philo->data->mutex_print);
 	pthread_mutex_unlock(&philo->data->mutex);
 }

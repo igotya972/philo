@@ -15,11 +15,11 @@
 void	ft_eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->fork);
-	ft_monitoring(philo, "has taken a fork");
+	ft_monitoring(philo, COLOR_RED "has taken a fork" NO_COLOR);
 	pthread_mutex_lock(&philo->data->philos[(philo->id)
 		% philo->data->nb_philo].fork);
-	ft_monitoring(philo, "has taken a fork");
-	ft_monitoring(philo, "is eating");
+	ft_monitoring(philo, COLOR_RED "has taken a fork" NO_COLOR);
+	ft_monitoring(philo, COLOR_DARK_GRAY "is eating" NO_COLOR);
 	pthread_mutex_lock(&(philo->data->mutex));
 	philo->last_eat = ft_times();
 	philo->count_p_eat++;
