@@ -6,14 +6,11 @@
 #    By: dferjul <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 19:12:28 by dferjul           #+#    #+#              #
-#    Updated: 2023/11/28 05:17:30 by dferjul          ###   ########.fr        #
+#    Updated: 2023/11/30 16:10:30 by dferjul          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS_DIR = source
-
-SRCS	=	$(shell find $(SRC_DIR) -name '*.c')
-
+SRCS	=	$(shell find ./ -name '*.c')
 
 OBJ_DIR = obj_o
 
