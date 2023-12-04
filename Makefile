@@ -6,7 +6,7 @@
 #    By: dferjul <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 19:12:28 by dferjul           #+#    #+#              #
-#    Updated: 2023/11/30 16:10:30 by dferjul          ###   ########.fr        #
+#    Updated: 2023/12/04 07:27:37 by dferjul          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ OBJS	=	$(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
 CC	=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -I./include
+CFLAGS	=	-g -Wall -Wextra -Werror -I./include
 
-#CFLAGS	=	-fsanitize=thread -g
+#CFLAGS	=	-pthread -g
 
 RM	=	rm -rf
 

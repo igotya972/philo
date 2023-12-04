@@ -6,7 +6,7 @@
 /*   By: dferjul <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:09:41 by dferjul           #+#    #+#             */
-/*   Updated: 2023/11/30 16:13:39 by dferjul          ###   ########.fr       */
+/*   Updated: 2023/12/04 18:32:16 by dferjul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void	*ft_routine(void *p)
 	t_philo	*philo;
 
 	philo = (t_philo *) p;
+	if (philo->data->nb_philo == 1)
+	{
+		ft_monitoring(philo, COLOR_RED "has taken a fork" COLOR_RED);
+		return (NULL);
+	}
 	if ((philo->id % 2) == 0)
 		ft_usleep(philo->data->time_to_eat / 2);
 	while (42)
